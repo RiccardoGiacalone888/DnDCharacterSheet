@@ -1,0 +1,11 @@
+@using DnDCharacterSheet.Models
+
+<h3>Talenti e Tratti</h3>
+<div class="form-group">
+    <textarea id="featuresTraits" class="form-control" @bind="FeaturesTraits"></textarea>
+</div>
+
+@code {
+    [Parameter]
+    public List<FeatureTrait> FeaturesTraits { get; set; } = new List<FeatureTrait>();
+}

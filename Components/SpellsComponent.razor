@@ -1,0 +1,54 @@
+@using DnDCharacterSheet.Models
+<h3>Incantesimi</h3>
+
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Livello</th>
+            <th>Scuola</th>
+            <th>Tempo di Lancio</th>
+            <th>Gittata</th>
+            <th>Componenti</th>
+            <th>Durata</th>
+            <th>Descrizione</th>
+            <th>Azioni</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var spell in Spells)
+        {
+            <tr>
+                <td>@spell.Name</td>
+                <td>@spell.Level</td>
+                <td>@spell.School</td>
+                <td>@spell.CastingTime</td>
+                <td>@spell.Range</td>
+                <td>@spell.Components</td>
+                <td>@spell.Duration</td>
+                <td>@spell.Description</td>
+                <td>
+                    <button class="btn btn-sm btn-danger" @onclick="() => RemoveSpell(spell)">Rimuovi</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<button class="btn btn-primary" @onclick="AddSpell">Aggiungi Incantesimo</button>
+
+@code {
+    [Parameter]
+    public List<Spell> Spells { get; set; } = new List<Spell>();
+
+    private void AddSpell()
+    {
+        Spells.Add(new Spell("Nome dell'incantesimo", "Descrizione dell'incantesimo"));
+    
+    }
+
+    private void RemoveSpell(Spell spell)
+    {
+        Spells.Remove(spell);
+    }
+}

@@ -1,0 +1,130 @@
+@using DnDCharacterSheet.Models
+
+<div class="card mb-4">
+    <div class="card-header bg-primary text-white section-title">
+        <h3>Dettagli del Personaggio</h3>
+    </div>
+    <div class="card-body">
+        <EditForm Model="@Character" OnValidSubmit="@HandleValidSubmit"> 
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="name">Nome:</label>
+                    <InputText id="name" class="form-control" @bind-Value="Character.Name" />
+                    <ValidationMessage For="@(() => Character.Name)" />
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="level">Livello:</label>
+                    <InputNumber id="level" class="form-control" @bind-Value="Character.Level" />
+                    <ValidationMessage For="@(() => Character.Level)" />
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="experience">Esperienza:</label>
+                    <InputNumber id="experience" class="form-control" @bind-Value="Character.ExperiencePoints" />
+                    <ValidationMessage For="@(() => Character.ExperiencePoints)" />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="race">Razza:</label>
+                    <InputSelect id="race" class="form-control" @bind-Value="Character.Race">
+                        <option value="">Seleziona una razza</option>
+                        @foreach (var race in Enum.GetValues(typeof(Race)))
+                        {
+                            <option value="@race">@race</option>
+                        }
+                    </InputSelect>
+                    <ValidationMessage For="@(() => Character.Race)" />
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="class">Classe:</label>
+                    <InputSelect id="class" class="form-control" @bind-Value="Character.CharacterClass">
+                        <option value="">Seleziona una classe</option>
+                        @foreach (var characterClass in Enum.GetValues(typeof(CharacterClass)))
+                        {
+                            <option value="@characterClass">@characterClass</option>
+                        }
+                    </InputSelect>
+                    <ValidationMessage For="@(() => Character.CharacterClass)" />
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="subclass">Sottoclasse:</label>
+                    <InputSelect id="subclass" class="form-control" @bind-Value="Character.CharacterSubclass">
+                        <option value="">Seleziona una sottoclasse</option>
+                        @if (Character.CharacterClass != null && GetSubclassesForClass(Character.CharacterClass).Any())
+                        {
+                            @foreach (var subclass in GetSubclassesForClass(Character.CharacterClass))
+                            {
+                                <option value="@subclass">@subclass</option>
+                            }
+                        }
+                    </InputSelect>
+                    <ValidationMessage For="@(() => Character.CharacterSubclass)" />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="alignment">Allineamento:</label>
+                    <InputText id="alignment" class="form-control" @bind-Value="Character.Alignment" />
+                    <ValidationMessage For="@(() => Character.Alignment)" />
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="background">Background:</label>
+                    <InputText id="background" class="form-control" @bind-Value="Character.Background" />
+                    <ValidationMessage For="@(() => Character.Background)" />
+                </div>
+            </div>
+
+            <div class="form-group form-check">
+                <InputCheckbox id="inspiration" class="form-check-input" @bind-Value="Character.HasInspiration" />
+                <label class="form-check-label" for="inspiration">Ispirazione</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Salva</button>
+        </EditForm>  
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public Character Character { get; set; } = new Character();
+
+    private async Task HandleValidSubmit()
+    {
+        // Logica per salvare il personaggio (ad esempio, chiamata API)
+        await Task.Delay(1); // esempio di operazione asincrona
+        Console.WriteLine("Personaggio salvato!");
+    }
+
+    private IEnumerable<string> GetSubclassesForClass(CharacterClass characterClass)
+    {
+        var subclasses = new Dictionary<CharacterClass, List<string>>
+        {
+            { CharacterClass.Barbarian, new List<string> { "Cammino del Berserker", "Cammino del Guerriero Totemico", "Cammino dello Zelota" } },
+            { CharacterClass.Bard, new List<string> { "Collegio della Sapienza", "Collegio del Valore", "Collegio del Glamour" } },
+            { CharacterClass.Cleric, new List<string> { "Dominio della Vita", "Dominio della Luce", "Dominio dell'Inganno" } },
+            { CharacterClass.Druid, new List<string> { "Circolo della Terra", "Circolo della Luna", "Circolo dei Sogni" } },
+            { CharacterClass.Fighter, new List<string> { "Campione", "Mastro di Battaglia", "Cavaliere Mistico" } },
+            { CharacterClass.Monk, new List<string> { "Via della Mano Aperta", "Via dell'Ombra", "Via dei Quattro Elementi" } },
+            { CharacterClass.Paladin, new List<string> { "Giuramento di Devozione", "Giuramento degli Antichi", "Giuramento di Vendetta" } },
+            { CharacterClass.Ranger, new List<string> { "Cacciatore", "Mastro delle Bestie", "Inseguitore del Buio" } },
+            { CharacterClass.Rogue, new List<string> { "Ladro", "Assassino", "Ingannatore Arcano" } },
+            { CharacterClass.Sorcerer, new List<string> { "Stirpe Draconica", "Magia Selvaggia", "Anima Divina" } },
+            { CharacterClass.Warlock, new List<string> { "Patto dell'Immondo", "Patto del Grande Antico", "Patto dell'Arcidemone" } },
+            { CharacterClass.Wizard, new List<string> { "Scuola di Abiurazione", "Scuola di Evocazione", "Scuola di Divinazione" } },
+        };
+
+        if (subclasses.ContainsKey(characterClass))
+        {
+            return subclasses[characterClass];
+        }
+        else
+        {
+            return new List<string>(); // Se non ci sono sottoclassi, restituisci una lista vuota
+        }
+    }
+}

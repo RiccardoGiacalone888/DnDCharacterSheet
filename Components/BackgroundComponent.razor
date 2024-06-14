@@ -1,0 +1,11 @@
+@using DnDCharacterSheet.Models
+
+<h3>Background</h3>
+<div class="form-group">
+    <textarea id="background" class="form-control" @bind="Background"></textarea>
+</div>
+
+@code {
+    [Parameter]
+    public string Background { get; set; } = "";
+}

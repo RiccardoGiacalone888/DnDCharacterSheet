@@ -1,0 +1,28 @@
+@using DnDCharacterSheet.Models
+
+<h4>Punteggi di Abilità</h4>
+
+<div class="row">
+    @foreach (var score in Enum.GetValues(typeof(AbilityScoreType)).Cast<AbilityScoreType>())
+    {
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">@score</h5>
+                    <InputNumber class="form-control text-center" @bind-Value="AbilityScores[score]" />
+                    <small class="text-muted">Modificatore: @GetModifier(AbilityScores[score])</small>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public Dictionary<AbilityScoreType, int> AbilityScores { get; set; } = new();
+
+    private int GetModifier(int score)
+    {
+        return (score - 10) / 2;
+    }
+}

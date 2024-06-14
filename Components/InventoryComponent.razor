@@ -1,0 +1,47 @@
+@using DnDCharacterSheet.Models
+<h3>Inventario</h3>
+
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Quantità</th>
+            <th>Peso</th>
+            <th>Valore</th>
+            <th>Descrizione</th>
+            <th>Azioni</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Inventory)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Quantity</td>
+                <td>@item.Weight</td>
+                <td>@item.Value</td>
+                <td>@item.Description</td>
+                <td>
+                    <button class="btn btn-sm btn-danger" @onclick="() => RemoveItem(item)">Rimuovi</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<button class="btn btn-primary" @onclick="AddItem">Aggiungi Oggetto</button>
+
+@code {
+    [Parameter]
+    public List<Item> Inventory { get; set; } = new List<Item>();
+
+    private void AddItem()
+    {
+        Inventory.Add(new Item("Nome dell'oggetto", 1));
+    }
+
+    private void RemoveItem(Item item)
+    {
+        Inventory.Remove(item);
+    }
+}

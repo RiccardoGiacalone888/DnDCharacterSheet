@@ -1,0 +1,11 @@
+@using DnDCharacterSheet.Models
+
+<h3>Note</h3>
+<div class="form-group">
+    <textarea id="notes" class="form-control" @bind="Notes"></textarea>
+</div>
+
+@code {
+    [Parameter]
+    public string Notes { get; set; } = "";
+}

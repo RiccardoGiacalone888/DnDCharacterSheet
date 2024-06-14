@@ -1,0 +1,28 @@
+﻿@inherits LayoutComponentBase
+
+<PageTitle>Dungeons & Dragons</PageTitle>
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu>
+            <NavLink href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Home
+            </NavLink>
+            <NavLink href="character-sheet">
+                <span class="oi oi-person" aria-hidden="true"></span> Scheda Personaggio
+            </NavLink>
+            <NavLink href="game">
+                <span class="oi oi-compass" aria-hidden="true"></span> Gioco
+            </NavLink>
+        </NavMenu>
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+        </div>
+        <div class="content px-4">
+            @Body
+        </div>
+    </main>
+</div>

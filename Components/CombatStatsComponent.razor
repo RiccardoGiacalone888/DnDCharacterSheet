@@ -1,0 +1,43 @@
+@using DnDCharacterSheet.Models
+
+<h3>Statistiche di Combattimento</h3>
+
+<div class="form-row">
+    <div class="form-group col-md-4">
+        <label for="armorClass">Classe Armatura (CA):</label>
+        <InputNumber id="armorClass" class="form-control" @bind-Value="CombatStats.ArmorClass" />
+    </div>
+    <div class="form-group col-md-4">
+        <label for="initiative">Iniziativa:</label>
+        <InputNumber id="initiative" class="form-control" @bind-Value="CombatStats.Initiative" />
+    </div>
+    <div class="form-group col-md-4">
+        <label for="speed">Velocità:</label>
+        <InputNumber id="speed" class="form-control" @bind-Value="CombatStats.Speed" />
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="form-group col-md-4">
+        <label for="currentHitPoints">Punti Ferita Attuali:</label>
+        <InputNumber id="currentHitPoints" class="form-control" @bind-Value="CombatStats.CurrentHitPoints" />
+    </div>
+    <div class="form-group col-md-4">
+        <label for="maxHitPoints">Punti Ferita Totali:</label>
+        <InputNumber id="maxHitPoints" class="form-control" @bind-Value="CombatStats.MaxHitPoints" />
+    </div>
+    <div class="form-group col-md-4">
+        <label for="hitDice">Dadi Vita:</label>
+        <InputNumber id="hitDice" class="form-control" @bind-Value="CombatStats.HitDice" />
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="temporaryHitPoints">Punti Ferita Temporanei:</label>
+    <InputNumber id="temporaryHitPoints" class="form-control" @bind-Value="CombatStats.TemporaryHitPoints" />
+</div>
+
+@code {
+    [Parameter]
+    public CombatStats CombatStats { get; set; } = new CombatStats();
+}

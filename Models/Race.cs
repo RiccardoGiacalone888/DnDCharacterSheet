@@ -1,0 +1,50 @@
+using System.ComponentModel.DataAnnotations;
+
+namespace DnDCharacterSheet.Models
+{
+    public enum Race
+    {
+        [Display(Name = "Umano")] Human,
+        [Display(Name = "Elfo")] Elf,
+        [Display(Name = "Nano")] Dwarf,
+        [Display(Name = "Halfling")] Halfling,
+        [Display(Name = "Gnomo")] Gnome,
+        [Display(Name = "Mezzelfo")] HalfElf,
+        [Display(Name = "Mezzorco")] HalfOrc,
+        [Display(Name = "Draconide")] Dragonborn,
+        [Display(Name = "Tiefling")] Tiefling,
+        [Display(Name = "Aasimar")] Aasimar,
+        [Display(Name = "Firbolg")] Firbolg,
+        [Display(Name = "Goliath")] Goliath,
+        [Display(Name = "Kenku")] Kenku,
+        [Display(Name = "Lizardfolk")] Lizardfolk,
+        [Display(Name = "Tabaxi")] Tabaxi,
+        [Display(Name = "Tritone")] Triton,
+        [Display(Name = "Bugbear")] Bugbear,
+        [Display(Name = "Hobgoblin")] Hobgoblin,
+        [Display(Name = "Orco")] Orc,
+        [Display(Name = "Yuan-ti Sanguepuro")] YuanTiPureblood,
+        [Display(Name = "Felinoid")] Felinoid,
+        [Display(Name = "Gith")] Gith,
+        [Display(Name = "Gnomo delle Profondità")] GnomeDeep,
+        [Display(Name = "Variante Mezzelfo")] HalfElfVariant,
+        [Display(Name = "Variante Umano")] HumanVariant,
+        [Display(Name = "Mutaforma")] Shifter,
+        [Display(Name = "Forgiato nella Guerra")] Warforged,
+        [Display(Name = "Aarakocra")] Aarakocra,
+        [Display(Name = "Genasi")] Genasi,
+        [Display(Name = "Changeling")] Changeling,
+        [Display(Name = "Kalashtar")] Kalashtar,
+        [Display(Name = "Orco di Exandria")] OrcOfExandria,
+        [Display(Name = "Leonin")] Leonin,
+        [Display(Name = "Satiro")] Satyr,
+        [Display(Name = "Centauro")] Centaur,
+        [Display(Name = "Loxodon")] Loxodon,
+        [Display(Name = "Minotauro")] Minotaur,
+        [Display(Name = "Ibrido Simic")] SimicHybrid,
+        [Display(Name = "Vedalken")] Vedalken,
+        [Display(Name = "Verdan")] Verdan,
+        [Display(Name = "Locathah")] Locathah,
+        [Display(Name = "Grung")] Grung
+    }
+}

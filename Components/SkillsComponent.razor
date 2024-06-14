@@ -1,0 +1,43 @@
+@using DnDCharacterSheet.Models
+
+<h4>Abilità</h4>
+
+<div class="row">
+    @foreach (var skill in Enum.GetValues(typeof(Skill)).Cast<Skill>())
+    {
+        <div class="col-md-4 mb-3">
+            <div class="form-check">
+                <InputCheckbox id="@skill" class="form-check-input" @bind-Value="Skills[skill].IsProficient" />
+                <label class="form-check-label" for="@skill">
+                    @skill (@GetModifier(AbilityScores[Skills[skill].AbilityScore], Skills[skill].IsProficient))
+                </label>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public Dictionary<Skill, SkillInfo> Skills { get; set; }
+
+
+    [Parameter]
+    public Dictionary<AbilityScoreType, int> AbilityScores { get; set; }= new Dictionary<AbilityScoreType, int>();
+
+    [Parameter]
+    public Character character { get; set; }
+
+    public SkillsComponent()
+{
+    Skills = new Dictionary<Skill, SkillInfo>();
+    character = new Character();
+}
+
+    private int GetModifier(int score, bool isProficient)
+    {
+        var modifier = (score - 10) / 2;
+        return isProficient ? modifier + character.ProficiencyBonus : modifier;
+    }
+}
+}
+}

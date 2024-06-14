@@ -1,0 +1,21 @@
+# Ignora le cartelle di sistema e quelle specifiche di Visual Studio Code
+.vscode/
+bin/
+obj/
+
+# Ignora le cartelle specifiche di Windows
+Cookies/
+Dati applicazioni/
+Impostazioni locali/
+Menu Avvio/
+Modelli/
+Recenti/
+Risorse di rete/
+Risorse di stampa/
+SendTo/
+/
+
+# Ignora altre cartelle e file che non vuoi includere nel repository
+*.suo
+*.user
+*.DotSettings.user

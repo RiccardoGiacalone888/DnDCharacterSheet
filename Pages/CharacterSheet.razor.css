@@ -1,0 +1,42 @@
+/* Stili base per la scheda del personaggio */
+.character-sheet {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    font-family: 'Cinzel', serif;
+}
+
+/* Stili per le classi */
+.barbarian { background-color: #8B0000; color: white; } /* Rosso */
+.bard { background-color: #FFD700; color: black; }       /* Oro */
+.cleric { background-color: #F0E68C; color: black; }    /* Giallo pallido */
+.druid { background-color: #228B22; color: white; }     /* Verde foresta */
+.fighter { background-color: #808080; color: white; }   /* Grigio */
+.monk { background-color: #C0C0C0; color: black; }      /* Argento */
+.paladin { background-color: #FFFAFA; color: black; }   /* Bianco */
+.ranger { background-color: #6B8E23; color: white; }    /* Verde oliva */
+.rogue { background-color: #000000; color: white; }     /* Nero */
+.sorcerer { background-color: #9370DB; color: white; }  /* Viola */
+.warlock { background-color: #4B0082; color: white; }   /* Indaco */
+.wizard { background-color: #0000FF; color: white; }    /* Blu */
+
+/* Stili per alcune sottoclassi (aggiungi altre sottoclassi come necessario) */
+.berserker { border: 2px solid #FF4500; }   /* Bordo arancione */
+.totem-warrior { border: 2px solid #2E8B57; } /* Bordo verde scuro */
+.zealot { border: 2px solid yellow; }
+.storm-herald { border: 2px solid cyan; }
+.beast { border: 2px solid brown; }
+.lore { border: 2px solid purple; }
+.valor { border: 2px solid gold; }
+.glamour { border: 2px solid pink; }
+.swords { border: 2px solid silver; }
+.whispers { border: 2px solid gray; }
+.life { border: 2px solid green; }
+.light { border: 2px solid yellow; }
+.trickery { border: 2px solid orange; }
+.knowledge { border: 2px solid blue; }
+.nature { border: 2px solid brown; }
+.tempest { border: 2px solid cyan; }
+.war { border: 2px solid red; }
+.forge { border: 2px solid gray; }
+.grave { border: 2px solid black; }

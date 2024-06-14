@@ -1,0 +1,60 @@
+@page "/character-sheet"
+@using DnDCharacterSheet.Components
+@inject IJSRuntime JSRuntime
+
+<div class="container mt-4 character-sheet">
+    <div class="row">
+        <div class="col-md-4">
+            <CharacterDetailsComponent Character="@character" />
+        </div>
+        <div class="col-md-8">
+            <AbilityScoresComponent @bind-AbilityScores="character.AbilityScores" />
+            <SkillsComponent Skills="@character.Skills" AbilityScores="@character.AbilityScores" Character="@character" />
+            <SavingThrowsComponent SavingThrows="@character.SavingThrows" Character="@character" />
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <CombatStatsComponent @bind-CombatStats="character.CombatStats" />
+        </div>
+        <div class="col-md-6">
+            <InventoryComponent @bind-Inventory="character.Inventory" />
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <SpellsComponent @bind-Spells="character.Spells" />
+            <FeaturesTraitsComponent @bind-FeaturesTraits="character.FeaturesTraits" />
+            <BackgroundComponent Background="@character.BackgroundDescription" />
+            <NotesComponent @bind-Notes="character.Notes" />
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12 text-center">
+            <button class="btn btn-primary" @onclick="SaveCharacter">Salva Personaggio</button>
+            <DiceRollerComponent />
+        </div>
+    </div>
+</div>
+
+@code {
+    private Character character = new Character();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var json = await JSRuntime.InvokeAsync<string>("localStorage.getItem", "character");
+        if (!string.IsNullOrEmpty(json))
+        {
+            character = Character.FromJson(json);
+        }
+    }
+
+    private async Task SaveCharacter()
+    {
+        var json = character.ToJson();
+        await JSRuntime.InvokeAsync<object>("localStorage.setItem", "character", json);
+    }
+}

@@ -1,0 +1,15 @@
+@using DnDCharacterSheet.Models
+
+<button class="btn btn-primary" @onclick="RollDice">Lancia Dado</button>
+<p>Risultato: @diceResult</p>
+
+@inject IJSRuntime JSRuntime
+
+@code {
+    private int diceResult = 0;
+
+    private async Task RollDice()
+    {
+        diceResult = await JSRuntime.InvokeAsync<int>("rollDice");
+    }
+}

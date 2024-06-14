@@ -1,0 +1,47 @@
+@using DnDCharacterSheet.Models
+
+<h4>Tiri Salvezza</h4>
+
+<div class="row">
+    @foreach (var savingThrow in SavingThrows)
+    {
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">@savingThrow.Key</h5>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <InputCheckbox @bind-Value="savingThrow.Value.IsProficient" />
+                            </div>
+                        </div>
+                        <InputNumber class="form-control text-center" @bind-Value="savingThrow.Value.Score" />
+                        <div class="input-group-append">
+                            <span class="input-group-text">@GetModifier(savingThrow.Value.Score, savingThrow.Value.IsProficient)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public Dictionary<AbilityScoreType, SavingThrowInfo> SavingThrows { get; set; } = new();
+
+    [Parameter]
+    public Character Character { get; set; }
+
+    public SavingThrowsComponent()
+{
+    Character = new Character();
+    SavingThrows = new Dictionary<AbilityScoreType, SavingThrowInfo>();
+}
+
+    private int GetModifier(int score, bool isProficient)
+    {
+        var modifier = (score - 10) / 2;
+        return isProficient ? modifier + Character.ProficiencyBonus : modifier;
+    }
+}
